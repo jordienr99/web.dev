@@ -3,6 +3,11 @@ const github = require('@actions/github');
 
 const LABEL = 'presubmit';
 
+/**
+ * Checks if `presubmit` label is on PR.
+ * If there is a `presubmit` label then remove the label and allow workflow to continue.
+ * If there is no `presubmit` label fail the workflow.
+ */
 async function run() {
   const githubToken = core.getInput('github_token', {required: true});
   const isPresubmit = core.getBooleanInput('is_presubmit', {required: true});
